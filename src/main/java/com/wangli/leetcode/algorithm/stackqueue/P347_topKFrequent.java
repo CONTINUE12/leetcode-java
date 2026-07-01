@@ -31,11 +31,11 @@ public class P347_topKFrequent {
             Integer count = entry.getValue();
 
             if (pq.size() < k) {
-                pq.add(new int[] {num, count});
+                pq.offer(new int[] {num, count});
             } else {
                 if (count > pq.peek()[1]) {
                     pq.poll();
-                    pq.add(new int[] {num, count});
+                    pq.offer(new int[] {num, count});
                 }
             }
         }

@@ -27,18 +27,18 @@ public class P239_maxSlidingWindow {
 
         // 先处理前k个元素
         for (int i = 0; i < k; i++) {
-            add(deque, nums[i]);
+            offerLast(deque, nums[i]);
         }
-        res[resIndex++] = deque.peek();
+        res[resIndex++] = deque.peekFirst();
 
         // 处理窗口滑动
         for (int i = k; i < nums.length; i++) {
             // 出队列
-            poll(deque, nums[i - k]);
+            pollFirst(deque, nums[i - k]);
             // 入队列
-            add(deque, nums[i]);
+            offerLast(deque, nums[i]);
             // 获取窗口最大值
-            res[resIndex++] = deque.peek();
+            res[resIndex++] = deque.peekFirst();
         }
 
         return res;
@@ -47,19 +47,19 @@ public class P239_maxSlidingWindow {
     /**
      * 入队逻辑
      */
-    private static void add(Deque<Integer> deque, int value) {
-        while (!deque.isEmpty() && deque.getLast() < value) {
-            deque.removeLast();
+    private static void offerLast(Deque<Integer> deque, int value) {
+        while (!deque.isEmpty() && deque.peekLast() < value) {
+            deque.pollLast();
         }
-        deque.add(value);
+        deque.offerLast(value);
     }
 
     /**
      * 出队逻辑
      */
-    private static void poll(Deque<Integer> deque, int value) {
-        if (!deque.isEmpty() && Objects.equals(deque.peek(), value)) {
-            deque.poll();
+    private static void pollFirst(Deque<Integer> deque, int value) {
+        if (!deque.isEmpty() && Objects.equals(deque.peekFirst(), value)) {
+            deque.pollFirst();
         }
     }
 
