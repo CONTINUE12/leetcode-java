@@ -3,10 +3,13 @@ package com.wangli.leetcode.algorithm.hash;
 public class P242_IsAnagram {
 
     public static void main(String[] args) {
-
+        String s = "anagram";
+        String t = "nagaram";
+        boolean res = isAnagram(s, t);
+        System.out.println(res);
     }
 
-    public boolean isAnagram(String s, String t) {
+    public static boolean isAnagram(String s, String t) {
         int[] records = new int[26];
 
         // 记录s中每个字母的数量
